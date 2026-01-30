@@ -35,3 +35,10 @@ export async function update(req: Request, res: Response) {
   await service.updateCredential(userId, id, data);
   res.sendStatus(200);
 }
+
+export async function getById(req: Request, res: Response) {
+  const { userId } = res.locals.user;
+  const id = parseInt(req.params.id as string);
+  const credential = await service.getCredentialById(userId, id);
+  res.status(200).send(credential);
+}
